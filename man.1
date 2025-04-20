@@ -1,0 +1,129 @@
+.TH MAN_1_SIMPLE_SHELL 1 "August 2024" "1.0" "My Simple Shell"
+.SH NAME
+man_1_simple_shell \- Man page for our custom simple shell program.
+
+.SH SYNOPSIS
+.B man_1_simple_shell
+.RI [ options ]
+
+.SH DESCRIPTION
+.B man_1_simple_shell
+is a basic command-line interpreter that executes user commands. It supports basic functionality such as
+executing binaries from the system path, handling environment variables, and basic command parsing. This is the final project for the first trimester from 
+.B Cohort 24 Ponce.
+
+.SH RUNNING PROGRAM
+
+Run the program by typing 
+.B ./hsh
+on the terminal.
+
+Then press 
+.B [ Enter ] .
+
+Enter a 
+.B [ command ]
+and interact with it.
+
+To exit the custom simple shell program type: 
+.B exit
+Then 
+.B [ Enter ]
+, you can also exit by typing 
+.B [ Ctrl + D ]
+, and also by typing 
+.B [ Ctrl + C ] .
+
+.SH LIBRARIES USED
+
+#include <stdio.h>
+.br
+#include <stdlib.h>
+.br
+#include <unistd.h>
+.br
+#include <stddef.h>
+.br
+#include <string.h>
+.br
+#include <sys/wait.h>
+.br
+
+#define MAX_ARGS 10
+
+.SH OPTIONS
+There are no specific options for 
+.B man_1_simple_shell. 
+It accepts standard shell commands and arguments.
+
+.SH USAGE
+.PP
+Start 
+.B man_1_simple_shell
+by running the binary. The simple shell provides a prompt where you can type commands. The simple shell program will execute the command if it exists in the system's PATH or if the full path to the executable is provided.
+
+.PP
+Here is an example of the usage:
+
+.nf
+#cisfun$ ls -l
+
+#cisfun$ /bin/echo "Hello, World!"
+
+#cisfun$ exit
+
+#cisfun$ pwd
+
+#cisfun$ printenv
+.fi
+
+.PP
+When the shell is started in an interactive mode (connected to a terminal), it displays a prompt 
+.B #cisfun$ 
+to indicate that it is ready to receive commands.
+
+.SH COMMANDS
+The following commands are supported by 
+.B man_1_simple_shell
+:
+
+.TP
+.B exit
+Exits the custom simple shell program.
+
+.TP
+.B env
+Displays the current environment variables.
+
+.TP
+.B [command]
+Executes a command from the user's environment or specified by the full path.
+
+.SH ENVIRONMENT
+.B man_1_simple_shell
+uses the environment variables defined by the system. The 
+.B _getenv
+function is used to retrieve the values of these variables.
+
+.SH FILES
+There are no specific files associated with 
+.B man_1_simple_shell.
+
+.SH BUGS
+There are no known bugs in our simple shell program.
+
+.SH AUTHOR
+Written by
+.br
+.B Francisco Antonio Báez López <9496@holbertonstudents.com>
+& 
+.br
+.B Jerry Luis Meletiche Baerga <9493@holbertonstudents.com> .
+
+.SH "SEE ALSO"
+The custom shell program from our colleagues 
+.br
+.B Edison Ortiz Jimenez <9492@holbertonstudents.com>
+& 
+.br
+.B Zuleyka Ivette Rubio Santiago <9497@holbertonstudents.com> .
