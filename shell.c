@@ -96,3 +96,43 @@ char **tokenize(char *input)
         waitpid(pid, &status, 0);
     } 
 }
+
+/**
+    * find_command - checks if the command is valid
+    * @command: the command to check
+    *
+    * Return: 1 if valid, 0 if not
+ */
+
+ char find_command(char *command)
+ {
+    char *path = getenv("PATH");
+    char *token, *full_path;
+    struct stat st;
+    size_t len;
+
+    if (!path)
+    return (NULL);
+
+    token = strtok(path, ":");
+    while (token != NULL)
+    {
+        len = strlen(token) + strlen(command) + 2;
+        full_path = malloc(len);
+        if (!full_path)
+        {
+            perror("malloc");
+            return (NULL);
+        }
+        snprintf(full_path, len, "%s/%s", token, command);
+        if (stat(full_path, &st) == 0)
+        {
+            free(full_path);
+            return (1);
+        }
+        free(full_path);
+        token = strtok(NULL, ":");
+        }
+    }
+    return (0);
+}

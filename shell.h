@@ -14,5 +14,6 @@ void prompt(void);
 void execute(char **args);
 char *read_input(void);
 char **tokenize(char *input);
+char find_command(char *command);
 
 #endif
