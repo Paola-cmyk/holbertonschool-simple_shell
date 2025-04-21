@@ -7,7 +7,7 @@
 
 void prompt(void)
 {
-write(1, "<3 ", 2);
+write(1, "$ ", 2);
 }
 
 /**
@@ -68,12 +68,31 @@ char **tokenize(char *input)
 
  void execute(char **args)
  {
+    pid_t pid;
+    int status;
+
      if (args[0] == NULL)
      {
          return;
      }
-     if (execvp(args[0], args) == -1)
-     {
-         perror("Error");
-     }
- }
+
+     pid = fork();
+     if (pid == -1)
+    {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+        else if (pid == 0)
+    }
+
+        if (execvp(args[0], args) == -1)
+        {
+        perror("execvp");
+        }
+        exit(EXIT_FAILURE);
+    } 
+    else
+    {
+        waitpid(pid, &status, 0);
+    } 
+}
