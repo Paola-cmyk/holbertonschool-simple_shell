@@ -25,6 +25,7 @@ This end of first trimester project showcases core concepts such as process cont
 Run the shell from terminal:
 
 ./simple_shell
+
 Then [enter]
 
 ```
