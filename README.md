@@ -2,9 +2,19 @@
 
 ## Description
 
-The simple shell is a basic UNIX comand line interpreter written in C. 
+The simple shell is a basic UNIX comand line interpreter written in C. I replicates the shell behavior, allowing users to execute commands.
 
-It runs in both interative and non-interactive modes, executes commands using system calls, and includes built-in functions like ```exit``` and ```env```. 
+The shell supports:
+
+- Execution of external commands using ```PATH```
+
+- Build-in commands:
+    - ```env```: prints thr current environment
+    - ```exit```: exit the shell
+- Parsing user input into arguments
+- Manual implementation of command lookup and execution via ```execve```
+- Error handling for commands not found
+- Core system calls like ```fork```,  ```wait``` and ```strtok```
 
 This end of first trimester project showcases core concepts such as process control, input parsing and environment handling.
 
@@ -30,8 +40,7 @@ Then [enter]
 
 ```
 $ ls -l
-$ echo, Hello, World!
-$ env
+$ echo Hello, World!
 $ exit
 ```
 
