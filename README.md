@@ -55,4 +55,4 @@ Pulls are welcomed however, please open an issue or contact mantainers before st
 Proyect originally developed at Holberton Coding School, Ponce, PR, 2025.
 
 ## License
-This project is an open souce and available under the 
+This project is an open souce and available under the <a href= "https://github.com/Paola-cmyk/holbertonschool-simple_shell/blob/main/MIT%20License" target="_blank">MIT License</a>
