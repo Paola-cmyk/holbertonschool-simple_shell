@@ -1,19 +1,12 @@
-.TH MYSHELL 1 "April 2025" "Version 1.0" "User Commands"
+.TH SIMPLE_SHELL 1 "April 2025" "Version 1.0" "Manual Page Utilities"
 .SH NAME
-man_1_simple_shell \- a simple custom command line
+simple_shell \- a simple custom command line
 .SH SYNOPSIS
-.B man_1_simple_shell command-line interpreter that executes user commands. It supports basic functionality such as
+.B ./simple_shell
+.SH DESCRIPTION
+\fBsimple_shell\fR is a command-line interpreter that executes user commands. It supports basic functionality such as
 executing binaries from the system path, handling environment variables, and basic command parsing. This is the final project for the first trimester from 
 .B Cohort 26 Ponce.
-
-.SH RUNNING PROGRAM
-
-Run the program by typing
-.B /hsh
-on the terminal.
-
-Theen press 
-.B [Enter]
 
 .SH LIBRARIES USED
 #include <stdio.h>
@@ -29,16 +22,107 @@ Theen press
 #include <sys/wait.h>
 .br
 
+.SH FEATURES
+.TP
+.B Built-in commands
+\fBexit\fR - exits the shell session
+.br
+\fBenv\fR - displays the current envionment variables
+
+.TP 
+.B External Command Execution
+If the input is not a built-in command, the shell checks whether it is a valid executable. If not, it searchers through the directories listed on the PATH envionment variable
+
+.TP
+.B PATH Resolution
+The shell searches for the executable by checking each directory listed in the PATH envionment variable using a custom implementation of \fB_getenv()\fR
+
+.TP
+.B Tokenization
+User input is tokenized (split into words) using the standard \fBstrtok()\fR function
+
+.SH FUNCTIONS
+.TP
+.B env_fetch(args, input, count)
+Checks if the command is a build-in. If it's \fBexit\fR, the shell exits. If it's \fBenv\fR, the shell prints the envionment. If neither, it attemps to execute the command using PATH resolution.
+
+.TP
+.B _getenv(name)
+Retrieves the value of an envionment variable from the envionment.
+
+.TP
+.B parse_input(input)
+Splits the input string into individual arguments.
+
+.TP
+.B execute_command(args)
+Creates a child process with \fBfork()\fR and executes the command using \fBexecve()\fR.
+
+.TP
+.B find_or_execute_command(args)
+Checks if the command exits and is executable. If found in PATH, it updates the argument and executes it.
+
+.SH RETURN values
+.B env_fetch
+Returns 0 on success, -1 if the shell should exit.
+
+.B execute_command
+Returns 0 on success, -1 on error.
+
+.SH USAGE
+Run the shell from terminal:
+.IP
+\fB./simple_shell\fR
+.br
+Then command [enter]
+.IP 
+\fB$ ls -l\fR
+.br
+\fB$ echo, Hello, World!\fR
+.br
+\fB$ env\fR
+.br
+\fB$ exit\fR
+
+.SH FILES 
+.TP
+\fBsimple_shell.c\fR 
+Contains the main loop and entry point for the shell program.
+.TP
+\fBproto_fuctions.c\fR
+Houses the helper functions such as:
+.RS
+.IP \(bu
+\fBenv_fetch()\fR - dispatches built-ins or external commands
+.IP \(bu
+\fB_getenv()\fR - fetches values from envionment
+.IP \(bu
+\fBparse_input()\fR - splits input into tokens
+.IP \(bu
+\fBexecute_command()\fR - forks and runs processes
+.IP \(bu
+\fBfind_or_execute_command()\fR - handles PATH search and Execution
+.RE
+
+.TP
+\fBshell.h\fR
+Header file declaring all shared function prototypes and including necessary system headers.
+
+
+
 .SH OPTIONS
 There are no specific options for
 .B man_1_simple_shell
 
-
+.SH ENVIRONMENT
+.B man_1_simple_shell
+uses the environment variables defined by the system.
 
 $ ./man_1_simple_shell myscript.sh
 
-.SH AUTHOR
+.SH AUTHORS
 Written by Paola N. Gonzalez Melendez
+Written by Eli Figueroa Perez 
 
 .Sh BUGS
 No known bugs. Report issues to 10345@holbertonstudents.com
